@@ -12,17 +12,9 @@ public class StatusController {
     @Autowired
     private IUsuarioRepository repository;
 
-    @GetMapping(path = "/api/usuario/{codigo}")
-    public ResponseEntity consultar(@PathVariable("codigo") Integer codigo)
+    @GetMapping(path = "/api/status")
+    public String check()
     {
-        return repository.findById(codigo)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @PostMapping(path = "api/usuario/salvar")
-    public UsuarioModel salvar(@RequestBody UsuarioModel usuario)
-    {
-        return repository.save(usuario);
+        return "online";
     }
 }
